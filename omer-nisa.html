@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>Ömer ❤️ Nisa</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Georgia', serif;
+    background: linear-gradient(135deg, #4b0f1c, #7a1f2b);
+    color: #fff;
+    text-align: center;
+    overflow: hidden;
+}
+
+.container {
+    padding-top: 80px;
+    position: relative;
+    z-index: 2;
+}
+
+.card {
+    background-color: rgba(255, 255, 255, 0.08);
+    max-width: 500px;
+    margin: auto;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 0 30px rgba(0,0,0,0.4);
+}
+
+h1 { font-size: 36px; }
+
+p {
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+.buttons { margin-top: 30px; }
+
+button {
+    padding: 12px 25px;
+    font-size: 18px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    margin: 10px;
+}
+
+#yesBtn {
+    background-color: #a8324a;
+    color: white;
+}
+
+#noBtn {
+    background-color: #333;
+    color: white;
+    position: absolute;
+}
+
+/* Kalp yağmuru */
+.heart {
+    position: fixed;
+    top: -10px;
+    font-size: 20px;
+    animation: fall linear forwards;
+    z-index: 1;
+}
+
+@keyframes fall {
+    to { transform: translateY(100vh); }
+}
+
+/* Yüzük animasyonu */
+.ring {
+    position: fixed;
+    font-size: 28px;
+    animation: explode 1.2s ease-out forwards;
+    pointer-events: none;
+}
+
+@keyframes explode {
+    0% { transform: scale(0.5); opacity: 1; }
+    100% {
+        transform: translate(var(--x), var(--y)) scale(1.5);
+        opacity: 0;
+    }
+}
+
+/* Sonsuza kadar yazısı */
+.forever-text {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 42px;
+    font-weight: bold;
+    color: #ffd1dc;
+    text-shadow: 0 0 20px gold;
+    opacity: 0;
+    animation: fadeIn 2s forwards;
+    z-index: 3;
+}
+
+@keyframes fadeIn {
+    to { opacity: 1; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- Müzik -->
+<iframe width="0" height="0"
+src="https://www.youtube.com/embed/1oeD2mX9G4k?autoplay=1&loop=1&playlist=1oeD2mX9G4k"
+frameborder="0" allow="autoplay">
+</iframe>
+
+<div class="container">
+    <div class="card">
+        <h1>Ömer & Nisa ❤️</h1>
+        <p>
+            Nisa... Seni kırdıysam gerçekten üzgünüm.
+            Sensiz hiçbir şeyin anlamı yok.
+        </p>
+
+        <div class="buttons">
+            <button id="yesBtn">Evet 💖</button>
+            <button id="noBtn">Hayır 😅</button>
+        </div>
+    </div>
+</div>
+
+<script>
+// Kaçan Hayır
+const noBtn = document.getElementById("noBtn");
+noBtn.addEventListener("mouseover", function() {
+    const x = Math.random() * (window.innerWidth - 100);
+    const y = Math.random() * (window.innerHeight - 50);
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
+});
+
+// Kalp Yağmuru
+function createHeart() {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = (Math.random() * 3 + 2) + "s";
+    heart.style.fontSize = (Math.random() * 20 + 10) + "px";
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 5000);
+}
+setInterval(createHeart, 300);
+
+// Evet Butonu
+const yesBtn = document.getElementById("yesBtn");
+
+yesBtn.addEventListener("click", function() {
+
+    alert("Sonsuza kadar birlikte 💍❤️");
+
+    // Yüzük patlama
+    for(let i = 0; i < 25; i++) {
+        const ring = document.createElement("div");
+        ring.classList.add("ring");
+        ring.innerHTML = "💍";
+
+        ring.style.left = window.innerWidth / 2 + "px";
+        ring.style.top = window.innerHeight / 2 + "px";
+
+        const randomX = (Math.random() - 0.5) * 500 + "px";
+        const randomY = (Math.random() - 0.5) * 500 + "px";
+
+        ring.style.setProperty('--x', randomX);
+        ring.style.setProperty('--y', randomY);
+
+        document.body.appendChild(ring);
+        setTimeout(() => ring.remove(), 1200);
+    }
+
+    // Sonsuza kadar yazısı
+    const forever = document.createElement("div");
+    forever.classList.add("forever-text");
+    forever.innerHTML = "Ömer ❤️ Nisa<br>Sonsuza Kadar 💍";
+    document.body.appendChild(forever);
+});
+</script>
+
+</body>
+</html>
